@@ -9,17 +9,28 @@ import { RestapiService } from '../../providers/restapi-service';
 })
 export class HomePage {
 
-  users: any;
+  notes: any;
 
   constructor(public navCtrl: NavController, public restapiService: RestapiService) {
-    this.getUsers();
+    this.getNotes();
   }
 
-  getUsers() {
-    this.restapiService.getUsers()
+  getNotes() {
+    this.restapiService.getNotes()
     .then(data => {
-      this.users = data;
-      console.log(this.users);
+      this.notes = data;
+      console.log(this.notes);
     });
+  }
+  removeNote(note){
+    let index = this.notes.indexOf(note);
+
+    if(index > -1){
+      this.notes.splice(index, 1);
+    }
+  }
+
+  newNote(){
+
   }
 }
